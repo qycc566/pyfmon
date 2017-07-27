@@ -75,9 +75,9 @@ class node(object):
             """是目录，返回路径的MD5"""
             return mp, None
         elif self.isfile(path_sp=path_sp):
-            """是文件"""
+            """是文件,返回路径及文件内容的MD5"""
             if os.access(self.getPath(path_sp), os.F_OK):
-                with open(self.getPath(path_sp)) as fp:
+                with open(self.getPath(path_sp), 'rb') as fp:
                     m = md5(fp.read()).hexdigest()
                     fp.close()
                 return mp, m
